@@ -3,9 +3,10 @@ const preview = document.getElementById("preview");
 const result = document.getElementById("result");
 
 async function loadModels() {
-  await faceapi.nets.ssdMobilenetv1.loadFromUri("./models");
-  await faceapi.nets.ageGenderNet.loadFromUri("./models");
+    await faceapi.nets.ssdMobilenetv1.loadFromUri("./models");
+    await faceapi.nets.ageGenderNet.loadFromUri("./models");
 }
+
 
 loadModels();
 

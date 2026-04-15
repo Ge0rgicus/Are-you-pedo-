@@ -43,11 +43,12 @@ fileInput.addEventListener("change", async () => {
 
       const label = `${age.toFixed(0)} yrs, ${gender} (${(genderProbability * 100).toFixed(0)}%)`;
 
+      ctx.font = "18px Arial";
       ctx.fillStyle = "black";
-      ctx.fillRect(box.x, box.y - 22, ctx.measureText(label).width + 10, 22);
+      ctx.fillRect(box.x, box.y - 24, ctx.measureText(label).width + 10, 24);
 
       ctx.fillStyle = "lime";
-      ctx.fillText(label, box.x + 5, box.y - 5);
+      ctx.fillText(label, box.x + 5, box.y - 6);
     });
   };
 });

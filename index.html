@@ -415,7 +415,7 @@
   }
 
   function renderResults(data) {
-    const faces = Array.isArray(data) ? data : (data.faces || []);
+    const faces = data.faces || [];
     const resultsEl = document.getElementById('results');
     const faceList  = document.getElementById('face-list');
     const faceCount = document.getElementById('face-count');
@@ -432,7 +432,8 @@
     faceCount.textContent = `${faces.length} face${faces.length > 1 ? 's' : ''} found`;
 
     faces.forEach((face, i) => {
-      const age    = face.age ?? face.attributes?.age ?? '?';
+      const age    = face.attributes?.age?.value ?? '?';
+      const gender = face.attributes?.gender?.value ?? '';
       const ageNum = parseFloat(age);
       const barW   = isNaN(ageNum) ? 0 : Math.min(100, ageNum);
 
@@ -444,7 +445,7 @@
         <div class="face-details">
           <div class="face-label">Estimated Age</div>
           <div class="face-age">${isNaN(ageNum) ? age : Math.round(ageNum)} yrs</div>
-          ${face.probability ? `<div class="face-confidence">Confidence: ${Math.round(face.probability * 100)}%</div>` : ''}
+          ${gender ? `<div class="face-confidence">${gender}</div>` : ''}
         </div>
         <div class="age-bar-wrap">
           <div class="age-bar-track">
@@ -458,7 +459,6 @@
       }, 50 + i * 80);
     });
   }
-
   function setLoading(on) {
     document.getElementById('loading').style.display = on ? 'block' : 'none';
     document.getElementById('detect-btn').disabled = on;
